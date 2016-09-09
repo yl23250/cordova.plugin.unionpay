@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android" id="com.justep.cordova.plugin.unionpay"
+	version="5.3.0">
+	<name>UnionPay</name>
+	<engines>
+		<engine name="cordova" version=">=3.5.0" />
+	</engines>
+
+	<js-module src="www/unionpay.js" name="unionpay">
+		<clobbers target="navigator.unionpay" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+
+		<source-file
+			src="src/android/com/justep/cordova/plugin/unionpay/HttpUtils.java"
+			target-dir="src/com/justep/cordova/plugin/unionpay" />
+		<source-file
+			src="src/android/com/justep/cordova/plugin/unionpay/UnionPay.java"
+			target-dir="src/com/justep/cordova/plugin/unionpay" />
+		
+		<source-file src="src/android/UPPayAssistEx.jar" target-dir="libs"/>   
+        <source-file src="src/android/UPPayPluginEx.jar" target-dir="libs"/>
+		
+		<source-file src="src/android/armeabi/libentryex.so" target-dir="libs/armeabi"/>
+		<source-file src="src/android/armeabi-v7a/libentryex.so" target-dir="libs/armeabi-v7a"/>
+		<source-file src="src/android/mips/libentryex.so" target-dir="libs/mips"/>
+		<source-file src="src/android/x86/libentryex.so" target-dir="libs/x86"/>
+		<source-file src="src/android/data.bin" target-dir="assets"/>
+
+		<config-file target="res/xml/config.xml" parent="/*">
+			<!--
+			<preference name="unionpay_tn_url" value="http://202.101.25.178:8080/sim/gettn" />
+			-->
+		    <preference name="unionpay_mmode" value="$unionpay_mmode" />
+		    <feature name="Unionpay">
+		        <param name="android-package" value="com.justep.cordova.plugin.unionpay.UnionPay" />
+		        <param name="onload" value="true" />
+		    </feature>
+		</config-file>
+		
+		
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:name="com.unionpay.uppay.PayActivity">
+        	</activity>
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+      		<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    	</config-file>
+		
+	</platform>
+
+	<!-- ios -->
+     <platform name="ios">
+         <config-file target="config.xml" parent="/*">
+         	<preference name="unionpay_mmode" value="$unionpay_mmode" />
+             <feature name="Unionpay">
+                 <param name="ios-package" value="CDVUnionpay" />
+                 <param name="onload" value="true" />
+             </feature>
+         </config-file>
+        
+         <header-file src="src/ios/CDVUnionpay.h" />
+         <source-file src="src/ios/CDVUnionpay.m" />
+         <header-file src="src/ios/UPPayPlugin/UPPayPlugin.h" />
+         <header-file src="src/ios/UPPayPlugin/UPPayPluginDelegate.h" />
+         <source-file src="src/ios/UPPayPlugin/libUPPayPlugin.a" framework="true" />
+<!--     <source-file src="src/ios/libUPPayPlugin.a" framework="true" compiler-flags="-lc++" /> -->
+         <framework src="libc++.dylib" />
+         <framework src="QuartzCore.framework" />
+         <framework src="Security.framework" />
+     </platform>
+	
+</plugin>

@@ -1,0 +1,24 @@
+/**
+	@name com.justep.cordova.plugin.unionpay
+	@class 
+	@description 银联支付插件
+	@model Native
+	@category plugin
+	@declareVar navigator.unionpay
+*/
+
+/**
+	@name com.justep.cordova.plugin.unionpay.pay
+ 	@function
+ 	@param {Object} orderInfo 支付信息
+  	<br/><b>参数格式：</b>
+	<xmp>
+		{
+			"tn":String - 银联支付的编号  ,
+		}
+	</xmp>	
+ 	@param {Function} onSuccess 执行成功回调函数
+ 	@param {Function} onError 执行失败回调函数
+ 	@returns {void}
+ 	@description 银联支付
+*/

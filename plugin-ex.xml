@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.justep.cordova.plugin.unionpay">
+	<name>银联支付</name>
+	<description>银联支付本地扩展插件</description>
+	<!-- common -->
+	<platform name="common">
+		<param name="unionpay_mmode" displayName="控件模式(00:生产模式 01:测试模式)" defaultValue="00"/>
+	</platform>
+</plugin>
